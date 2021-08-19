@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    
+</head>
+
+<body>  
+    
+       <div class="catpcha-cont">
+        <div class="header">Security Check</div>
+        <div class="secode">
+            <p id="code">Avi78fd</p>
+            <div class="icons">
+                <span class="readtext">
+                    <i class="fas fa-headphones"></i>
+                </span>
+               
+                <span class="changetext">
+                    <i class="fas fa-sync-alt"></i>
+                </span>
+            </div>
+        </div>
+        <div class="userInput">
+            <input type="text" placeholder="Type The Captcha Here"  >
+            <button class="btn">Submits </button>
+        </div>
+
+       </div>
+
+       <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+    <script>
+
+const cheagetxtbtn = document.querySelector('.changetext');
+
+const readtxtbtn = document.querySelector('.readtext');
+
+const code = document.querySelector('#code');
+
+const input = document.querySelector('.userInput input');
+
+const Submitbtn = document.querySelector('.btn');
+
+
+cheagetxtbtn.addEventListener('click', () => {
+    code.textContent = createCaptcha();
+});
+
+window.addEventListener('load', () => {
+    code.textContent = createCaptcha();
+});
+
+function createCaptcha(){
+    let letter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z","0","1","2","3","4","5","6","7","8","9"];
+    let a = letter[Math.floor(Math.random()* letter.length)];
+    let b = letter[Math.floor(Math.random()* letter.length)];
+    let c = letter[Math.floor(Math.random()* letter.length)];
+    let d = letter[Math.floor(Math.random()* letter.length)];
+    let f = letter[Math.floor(Math.random()* letter.length)];
+    let g = letter[Math.floor(Math.random()* letter.length)];
+    let i= letter[Math.floor(Math.random()* letter.length)];
+  
+    let code = a+b+c+d+f+g+i;
+    return code;
+
+   }
+Submitbtn.addEventListener('click', () => {
+    let val = input.value;
+    if(val==''){
+        
+        responsiveVoice.speak('Please Enter the Captcha');
+        alert('Please Enter the Text');
+    }
+    else if(val===code.textContent)
+    {
+        
+        alert('The Code is Valid '+" "+code.textContent)
+    }
+    else{
+        
+        responsiveVoice.speak('Invalid Captcha');
+        alert('Invalid code')
+    }
+})
+
+readtxtbtn.addEventListener('click', () => {
+    let text = code.textContent;
+    responsiveVoice.speak(text);
+
+});
+
+    </script>
+    <!-- <script src="logic.js"></script> -->
+</body>
+</html>
